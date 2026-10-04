@@ -1,0 +1,33 @@
+class Solution {
+
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+
+        // Если оба узла отсутствуют, значит в этом месте
+        // оба дерева одинаковые.
+        if (p == null && q == null) {
+            return true;
+        }
+
+        // Если один узел отсутствует, а другой существует,
+        // структура деревьев отличается.
+        if (p == null || q == null) {
+            return false;
+        }
+
+        // Если значения текущих узлов разные,
+        // значит деревья не одинаковые.
+        if (p.val != q.val) {
+            return false;
+        }
+
+        // Проверяем, одинаковые ли левые поддеревья.
+        boolean left = isSameTree(p.left, q.left);
+
+        // Проверяем, одинаковые ли правые поддеревья.
+        boolean right = isSameTree(p.right, q.right);
+
+        // Возвращаем true только тогда,
+        // когда и левое, и правое поддерево одинаковые.
+        return left && right;
+    }
+}
